@@ -1,0 +1,9 @@
+#<Embryo name> <Cleavage cycle> <Temporal class> <Genes>
+kf4 14A 1 even-skipped knirps giant
+kf2 14A 2 even-skipped knirps giant
+kw17 14A 3 even-skipped knirps giant
+kw9 14A 4 even-skipped knirps giant
+kw10 14A 5 even-skipped knirps giant
+kf6 14A 6 even-skipped knirps giant
+kf5 14A 7 even-skipped knirps giant
+kf3 14A 8 even-skipped knirps giant

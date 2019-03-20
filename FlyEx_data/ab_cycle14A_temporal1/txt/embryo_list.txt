@@ -1,0 +1,3 @@
+#<Embryo name> <Cleavage cycle> <Temporal class> <Genes>
+ab11 14A 1 even-skipped caudal bicoid
+ab12 14A 1 even-skipped caudal bicoid
