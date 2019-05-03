@@ -1,9 +1,0 @@
-#<Embryo name> <Cleavage cycle> <Temporal class> <Genes>
-ca4 14A 1 even-skipped Kruppel giant
-ca8 14A 2 even-skipped Kruppel giant
-ca5 14A 3 even-skipped Kruppel giant
-bk2 14A 4 even-skipped Kruppel giant
-ca2 14A 5 even-skipped Kruppel giant
-ca6 14A 6 even-skipped Kruppel giant
-ca3 14A 7 even-skipped Kruppel giant
-ca1 14A 8 even-skipped Kruppel giant

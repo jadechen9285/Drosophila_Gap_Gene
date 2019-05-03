@@ -1,9 +1,0 @@
-#<Embryo name> <Cleavage cycle> <Temporal class> <Genes>
-dm11 14A 1 even-skipped knirps hunchback
-dm9 14A 2 even-skipped knirps hunchback
-dm4 14A 3 even-skipped knirps hunchback
-dm6 14A 4 even-skipped knirps hunchback
-dm8 14A 5 even-skipped knirps hunchback
-fa2 14A 6 even-skipped knirps hunchback
-dm3 14A 7 even-skipped knirps hunchback
-dm14 14A 8 even-skipped knirps hunchback

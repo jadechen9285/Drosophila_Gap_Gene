@@ -41,10 +41,28 @@ Strip_Data = function(x, sep,  gen1, gen2){
   colnames(oneAvg) = c(gen1, gen2)
   return(oneAvg)
 }
-
+Probability_Conversion = function(x, sep,  gene1, gene2){
+  # Convert the raw intensity measurements of the gap genes into 
+  #     probabilities by counting the Boolean value then average over a strip:
+  #   inputs: x = data file;
+  #           sep = width of the strip
+  #           gen1, gen2 = interested genes
+  #   output: a dataframe of converted probabilities of the gap gene
+  one_prob = data.frame()
+  for (n in seq(0, (100-sep),sep)){
+    one = subset(x, (x$AP > n) & (x$AP < (n+sep)))
+    gene1_bool = map(one[[gene1]], function(x){case_when(x > gene_mean[gene1]~1, x < gene_mean[gene1] ~ 0)})
+    gene2_bool = map(one[[gene2]], function(x){case_when(x > gene_mean[gene2]~1, x < gene_mean[gene2] ~ 0)})
+    gene1_prob = sum(unlist(gene1_bool))/length(gene1_bool)
+    gene2_prob = sum(unlist(gene2_bool))/length(gene2_bool)
+    one_prob = rbind(one_prob, c(gene1_prob, gene2_prob))
+  }
+  colnames(one_prob) = c(gene1, gene2)
+  return(one_prob)
+}
 
 # -----------------------------------------------------------------------------------------------------
-#  1. load the FlyEx data files
+#  1. load the FlyEx raw data files
 # -----------------------------------------------------------------------------------------------------
 # data for gt & kni:
 dir1 = "/Users/jianhongchen/Desktop/UCSC_AMS_PhD/Gap_Gene_of_Drosophila/FlyEx_data/gt_kni14At1-8_w_R3/txt/byEmbryos"
@@ -138,13 +156,28 @@ droso_Boolean = droso_gap_bin %>%
   select(c(AP, time:kni_Boolean))
 
 # -----------------------------------------------------------------------------------------------------
+# Convert the experimental data(wild type) into probability
+# -----------------------------------------------------------------------------------------------------
+gt_kni_prob = map(gt_kni_raw, Probability_Conversion, sep = 1, gene1 = 'gt', gene2 = 'kni')
+kr_hb_prob = map(kr_hb_raw, Probability_Conversion, sep = 1, gene1 = 'kr', gene2 = 'hb')
+
+# finally assemble the prob data into one complete dataframe
+WT_prob = data.frame()
+for (i in 1:8){
+  prob_temp = cbind('AP' = 4:98, # only consider data in this range because of 'NAN'
+                    gt_kni_prob[[i]][4:98, ], kr_hb_prob[[i]][4:98, ], 
+                    'time' = rep(i, dim(gt_kni_prob[[i]][4:98, ])[1]))
+  WT_prob = rbind(WT_prob, prob_temp)
+}
+
+
+# -----------------------------------------------------------------------------------------------------
 # 3. output cleaned data files into select directory
 # -----------------------------------------------------------------------------------------------------
 dir_out = "/Users/jianhongchen/Desktop/UCSC_AMS_PhD/Github/Drosophila_gap_gene/FlyEx_droso_data"
-#  Macintosh HD⁩ ▸ ⁨Users⁩ ▸ ⁨jianhongchen⁩ ▸ ⁨Desktop⁩ ▸ ⁨UCSC_AMS_PhD⁩ ▸ ⁨Github⁩ ▸ ⁨Drosophila_gap_gene⁩
 write_csv(droso_Boolean, file.path(dir_out, "droso_Boolean.csv"))
 write_csv(droso_gap_bin, file.path(dir_out, "droso_Bin.csv"))
-  
+write_csv(WT_prob, file.path(dir_out, "droso_WT_prob"))
   
   
   

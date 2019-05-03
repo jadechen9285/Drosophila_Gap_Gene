@@ -1,9 +1,0 @@
-#<Embryo name> <Cleavage cycle> <Temporal class> <Genes>
-kf8 14A 1 even-skipped Kruppel hunchback
-rf12 14A 2 even-skipped Kruppel hunchback
-rf8 14A 3 even-skipped Kruppel hunchback
-mn10 14A 4 even-skipped Kruppel hunchback
-hre2 14A 5 even-skipped Kruppel hunchback
-kf7 14A 6 even-skipped Kruppel hunchback
-hre1 14A 7 even-skipped Kruppel hunchback
-kf9 14A 8 even-skipped Kruppel hunchback

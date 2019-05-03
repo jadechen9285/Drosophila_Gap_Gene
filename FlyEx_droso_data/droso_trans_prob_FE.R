@@ -132,7 +132,7 @@ ggplot(droso_gap_bin_long, aes(x = AP, y = intensity, color = gene)) +
   geom_line(alpha = 0.7) + 
   facet_wrap(~time, nrow = 2) +
   ggtitle('Gap Gene Expression Binned FlyEx Data') +
-  theme(text = element_text(size = 15))
+  theme(text = element_text(size = 25))
 
 # -----------------------------------------------------------------------------------------------------
 # converting intensity into Boolean Value (1/0 = on/off)
@@ -286,7 +286,7 @@ full_tp = Spacial_Trans_Prob(droso_Boolean, 4, 98)[[2]]
 full_tp_counter = Spacial_Trans_Prob(droso_Boolean, 4, 98)[[3]]
 
 # visulizating the reulst
-tp_long = melt(cluster3_tp)
+tp_long = melt(full_tp)
 
 ggplot(tp_long, aes(x = Var1, y = value)) +
   geom_col() +
@@ -310,8 +310,8 @@ ggplot(tp_long, aes(x = Var1, y = value)) +
   facet_wrap(~Var2) +
   ylab('Transitional Probabilities') +
   xlab("Transitonal States") +
-  ggtitle('Cluster 3 Transitional Probabilities Barplot') +
-  theme(text = element_text(size = 20))
+  ggtitle('Transitional Probabilities Barplot') +
+  theme(text = element_text(size = 25))
 
 #########################################################################################
 # III.  Simulation:
@@ -586,11 +586,11 @@ ggplot(gt_kni_exp, aes(x = gt, y = kni, color = AP)) +
   theme(text = element_text(size = 15))
 
 # binned strong mutual repression pairs interaction 
-ggplot(droso_gap_bin, aes(x = gt, y = kr, color = AP)) +
+ggplot(droso_gap_bin, aes(x = kni, y = hb, color = AP)) +
   geom_point(alpha = 0.8) +
   facet_wrap(~time, nrow =2) +
-  ggtitle("gt vs kr in time binned data set ") + 
-  theme(text = element_text(size = 15))
+  ggtitle("kni vs hb in time binned data set ") + 
+  theme(text = element_text(size = 25))
 
 # create an extra label for 'droso_gap_bin' df to create manual segmentation 
 AP_label = c("0-10", "10-20", "20-30", "30-40", "40-50", "50-60", "60-70", "70-80", "80-90", "90-100")
@@ -611,7 +611,7 @@ ggplot(droso_gap_bin, aes(x = kni, y = hb)) +
   geom_point() + 
   facet_grid(manual_seg ~ time) +
   ggtitle("kni vs hb in time with manual segmentation binned data set ") + 
-  theme(text = element_text(size = 15))
+  theme(text = element_text(size = 25))
 
 # -----------------------------------------------------------------------------------------------------
 # Implement Clustering Analysis Methods: k-mean , kernel k-mean(nonlinear), Hierarchical k-mean (hkmean)
